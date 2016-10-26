@@ -37,6 +37,7 @@ module ForemanAzure
     end
 
     def create_vm(args = {})
+      args.delete_if { |_key, value| value.nil? || value.blank? }
       args[:hostname] = args[:name]
       args[:vm_name] = args[:name].split('.').first
       args[:cloud_service_name] ||= args[:vm_name]
